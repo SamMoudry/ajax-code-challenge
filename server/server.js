@@ -34,6 +34,10 @@ let jokes = [
   }
 ];
 
+app.get('/jokes', (req, res) => {
+  res.send(jokes);
+})
+
 // serve back static files
 app.use(express.static('server/public'));
 
