@@ -4,6 +4,7 @@ $( document ).ready( onReady );
 
 function onReady() {
     console.log('DOM ready');
+    getJokes();
 }
 
 
@@ -24,14 +25,14 @@ function getJokes() {
 }
 
 function render(array){
+    $('#outputDiv').empty();
     for (let i = 0; i < array.length; i++) {
         $('#outputDiv').append(`
         <div>
-            <p>${array[i].name}</p>
+            <p>${array[i].whoseJoke}</p>
             <p>${array[i].jokeQuestion}</p>
             <p>${array[i].punchLine}</p>
         </div>
-        `)
-        
+        `)  
     }
 }
