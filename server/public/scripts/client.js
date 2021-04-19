@@ -4,9 +4,34 @@ $( document ).ready( onReady );
 
 function onReady() {
     console.log('DOM ready');
+    $('#addJokeButton').on('click', addJokes);
     getJokes();
 }
 
+function addJokes() {
+    let newJoke = {
+        whoseJoke: $('#whoseJokeIn').val(),
+        jokeQuestion: $('#questionIn').val(),
+        punchLine: $('#punchlineIn').val()
+    }
+
+    $.ajax({
+        method: 'POST',
+        url: '/jokes',
+        data: newJoke
+    })
+        .then(function(response) {
+            console.log('Added quote', newJoke);
+            getJokes();
+        })
+        .catch(function(error) {
+            console.log('Error from server', error);
+            alert('Could not send quote.');
+        })
+    $('#whoseJokeIn').val('');
+    $('#questionIn').val('');
+    $('#punchlineIn').val('');
+}
 
 function getJokes() {
     $.ajax({
